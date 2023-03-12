@@ -1,0 +1,10 @@
+.chart {
+  max-width: 800px;
+  max-height: 600px;
+}
+
+canvas {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
