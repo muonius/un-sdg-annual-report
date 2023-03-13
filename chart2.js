@@ -1,4 +1,10 @@
-var ctx2 = document.getElementById("chart2").getContext("2d");
+async function draw(){
+  var ctx2 = document.getElementById("chart2").getContext("2d");
+
+  const dataset = await d3.csv("./data/chart1.csv", (d) => {
+    d3.autoType(d)
+    return d
+})
 
 var colors2 = ['#fff5eb', '#fee6ce', '#fdd0a2', '#fdae6b', '#fd8d3c', '#f16913', '#d94801', '#a63603', '#7f2704'];
 var assigned = {};
@@ -11,52 +17,116 @@ var chart2 = new Chart(ctx2, {
     datasets: [
       {
         data: [
-          { from: "Brazil", to: "Portugal", flow: 5 },
-          { from: "Brazil", to: "France", flow: 1 },
-          { from: "Brazil", to: "Spain", flow: 1 },
-          { from: "Brazil", to: "England", flow: 1 },
-          { from: "Canada", to: "Portugal", flow: 1 },
-          { from: "Canada", to: "France", flow: 5 },
-          { from: "Canada", to: "England", flow: 1 },
-          { from: "Mexico", to: "Portugal", flow: 1 },
-          { from: "Mexico", to: "France", flow: 1 },
-          { from: "Mexico", to: "Spain", flow: 5 },
-          { from: "Mexico", to: "England", flow: 1 },
-          { from: "USA", to: "Portugal", flow: 1 },
-          { from: "USA", to: "France", flow: 1 },
-          { from: "USA", to: "Spain", flow: 1 },
-          { from: "USA", to: "England", flow: 5 },
-          { from: "Portugal", to: "Angola", flow: 2 },
-          { from: "Portugal", to: "Senegal", flow: 1 },
-          { from: "Portugal", to: "Morocco", flow: 1 },
-          { from: "Portugal", to: "South Africa", flow: 3 },
-          { from: "France", to: "Angola", flow: 1 },
-          { from: "France", to: "Senegal", flow: 3 },
-          { from: "France", to: "Mali", flow: 3 },
-          { from: "France", to: "Morocco", flow: 3 },
-          { from: "France", to: "South Africa", flow: 1 },
-          { from: "Spain", to: "Senegal", flow: 1 },
-          { from: "Spain", to: "Morocco", flow: 3 },
-          { from: "Spain", to: "South Africa", flow: 1 },
-          { from: "England", to: "Angola", flow: 1 },
-          { from: "England", to: "Senegal", flow: 1 },
-          { from: "England", to: "Morocco", flow: 2 },
-          { from: "England", to: "South Africa", flow: 7 },
-          { from: "South Africa", to: "China", flow: 5 },
-          { from: "South Africa", to: "India", flow: 1 },
-          { from: "South Africa", to: "Japan", flow: 3 },
-          { from: "Angola", to: "China", flow: 5 },
-          { from: "Angola", to: "India", flow: 1 },
-          { from: "Angola", to: "Japan", flow: 3 },
-          { from: "Senegal", to: "China", flow: 5 },
-          { from: "Senegal", to: "India", flow: 1 },
-          { from: "Senegal", to: "Japan", flow: 3 },
-          { from: "Mali", to: "China", flow: 5 },
-          { from: "Mali", to: "India", flow: 1 },
-          { from: "Mali", to: "Japan", flow: 3 },
-          { from: "Morocco", to: "China", flow: 5 },
-          { from: "Morocco", to: "India", flow: 1 },
-          { from: "Morocco", to: "Japan", flow: 3 }
+          {
+            "from": "Climate action & energy transformation",
+            "to": "SDG13",
+            "flow": 2
+          },
+          {
+            "from": "Climate action & energy transformation",
+            "to": "SDG7",
+            "flow": 2
+          },
+          {
+            "from": "Decent jobs & universal social protection",
+            "to": "SDG1",
+            "flow": 3
+          },
+          {
+            "from": "Decent jobs & universal social protection",
+            "to": "SDG13",
+            "flow": 2
+          },
+          {
+            "from": "Decent jobs & universal social protection",
+            "to": "SDG2",
+            "flow": 3
+          },
+          {
+            "from": "Decent jobs & universal social protection",
+            "to": "SDG7",
+            "flow": 2
+          },
+          {
+            "from": "Food systems transformation",
+            "to": "SDG1",
+            "flow": 3
+          },
+          {
+            "from": "Food systems transformation",
+            "to": "SDG13",
+            "flow": 2
+          },
+          {
+            "from": "Food systems transformation",
+            "to": "SDG2",
+            "flow": 3
+          },
+          {
+            "from": "Food systems transformation",
+            "to": "SDG7",
+            "flow": 2
+          },
+          {
+            "from": "SDG localization",
+            "to": "SDG13",
+            "flow": 2
+          },
+          {
+            "from": "SDG localization",
+            "to": "SDG7",
+            "flow": 2
+          },
+          {
+            "from": "SDG1",
+            "to": "Civil Society Organizations",
+            "flow": 2
+          },
+          {
+            "from": "SDG1",
+            "to": "National Government",
+            "flow": 2
+          },
+          {
+            "from": "SDG1",
+            "to": "Sub-national Governments",
+            "flow": 2
+          },
+          {
+            "from": "SDG13",
+            "to": "Civil Society Organizations",
+            "flow": 4
+          },
+          {
+            "from": "SDG13",
+            "to": "National Government",
+            "flow": 4
+          },
+          {
+            "from": "SDG2",
+            "to": "Civil Society Organizations",
+            "flow": 2
+          },
+          {
+            "from": "SDG2",
+            "to": "National Government",
+            "flow": 2
+          },
+          {
+            "from": "SDG2",
+            "to": "Sub-national Governments",
+            "flow": 2
+          },
+          {
+            "from": "SDG7",
+            "to": "Civil Society Organizations",
+            "flow": 4
+          },
+          {
+            "from": "SDG7",
+            "to": "National Government",
+            "flow": 4
+          }
         ],
         colorFrom: (c) => c2(c.dataset.data[c.dataIndex].from),
         colorTo: (c) => c2(c.dataset.data[c.dataIndex].to),
@@ -64,4 +134,5 @@ var chart2 = new Chart(ctx2, {
       }
     ]
   }
-});
+})
+} draw()

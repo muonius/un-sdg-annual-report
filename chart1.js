@@ -1,8 +1,12 @@
 async function draw(){
+  var ctx2 = document.getElementById("chart2").getContext("2d");
 
-var ctx = document.getElementById("chart").getContext("2d");
+  const dataset = await d3.csv("./data/chart1.csv", (d) => {
+    d3.autoType(d)
+    return d
+})
 
-const palette = [
+var colors2 = [
   "#E5233D",
   "#DEA739",
   "#4CA146",
@@ -20,55 +24,24 @@ const palette = [
   "#59BA48",
   "#126A9E",
   "#15496B",
-];
+]
 
-var colors = {
-  Oil: "black",
-  Coal: "gray",
-  "Fossil Fuels": "slategray",
-  Electricity: "blue",
-  Energy: "orange"
-};
-
-// the y-order of nodes, smaller = higher
-var priority = {
-  Oil: 1,
-  'Narural Gas': 2,
-  Coal: 3,
-  'Fossil Fuels': 1,
-  Electricity: 2,
-  Energy: 1
-};
-
-// var labels = {
-//   Oil: 'black gold (label changed)'
-// }
-
-function getColor(name) {
-  return colors[name] || "green";
+var assigned = {};
+function c2(name) {
+  return assigned[name] || (assigned[name] = colors2[Object.keys(assigned).length % colors2.length]);
 }
-
-var chart = new Chart(ctx, {
+var chart2 = new Chart(ctx2, {
   type: "sankey",
   data: {
     datasets: [
       {
-        data: [
-          { from: "Oil", to: "Fossil Fuels", flow: 15 },
-          { from: "Natural Gas", to: "Fossil Fuels", flow: 20 },
-          { from: "Coal", to: "Fossil Fuels", flow: 25 },
-          { from: "Coal", to: "Electricity", flow: 25 },
-          { from: "Fossil Fuels", to: "Energy", flow: 60 },
-          { from: "Electricity", to: "Energy", flow: 25 }
-        ],
-        priority,
-        // labels,
-        colorFrom: (c) => getColor(c.dataset.data[c.dataIndex].from),
-        colorTo: (c) => getColor(c.dataset.data[c.dataIndex].to),
-        borderWidth: 2,
-        borderColor: 'black'
+        data:dataset,
+        colorFrom: (c) => c2(c.dataset.data[c.dataIndex].from),
+        colorTo: (c) => c2(c.dataset.data[c.dataIndex].to),
+        borderWidth: 0
       }
     ]
-  }
-});
+  },
+  size: "max"
+})
 } draw()
