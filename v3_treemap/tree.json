@@ -1,0 +1,59 @@
+{
+    "children": [
+       {
+          "name": "Co-funding",
+          "children": [
+             {
+                "name": "United Nations",
+                "group": "A",
+                "value2": 31500000,
+                "value": 7.498310554,
+                "colname": "level3"
+             },
+             {
+                "name": "Government",
+                "group": "A",
+                "value2": 6500000,
+                "value": 6.812913357,
+                "colname": "level3"
+             }
+          ],
+          "colname": "level2"
+       },
+       {
+          "name": "Scale Up",
+          "children": [
+             {
+                "name": "Bilateral Aid",
+                "group": "C",
+                "value2": 4100000,
+                "value": 6.612783857,
+                "colname": "level3"
+             },
+             {
+                "name": "Government",
+                "group": "A",
+                "value2": 400000000,
+                "value": 8.602059991,
+                "colname": "level3"
+             },
+             {
+                "name": "National Government",
+                "group": "A",
+                "value2": 445000,
+                "value": 5.648360011,
+                "colname": "level3"
+             },
+             {
+                "name": "United Nations",
+                "group": "A",
+                "value2": 6948139,
+                "value": 6.841868498,
+                "colname": "level3"
+             }
+          ],
+          "colname": "level2"
+       }
+    ],
+    "name": "Filtered on: Integrated Social Protection"
+ }
