@@ -1,0 +1,337 @@
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  max-width: 1920px;
+  min-width: 1080px;
+  font-family: "DM Sans";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* padding: 2em 2em; */
+  font-size: 16px;
+  color: #3f474e;
+  background: #f4f5f5;
+}
+
+svg {
+  /* overflow: visible; */
+}
+
+.header {
+  position: sticky;
+  width: 100%;
+  height: 20%;
+  background-color: #0080ff;
+  overflow: hidden;
+}
+
+.title {
+  position: relative;
+  font-family: "Oswald";
+  width: 100%;
+  font-size: 3em;
+  font-weight: 900;
+  padding-left: 1em;
+  line-height: 0.1em;
+  padding-bottom: 0;
+  color: #f8f9fa;
+}
+
+#chart {
+  left: 0;
+  top: 0;
+  position: absolute;
+}
+
+h4 {
+  padding-left: 2em;
+  padding-top: 0.2em;
+  font-size: 1.5rem;
+  font-weight: 400;
+  background: #f8f9fa;
+  margin: 0;
+}
+
+.wrapper {
+  width: 50%;
+  padding-top: 4rem;
+  padding-bottom: 1rem;
+  position: relative;
+  /* background: pink; */
+}
+.grid-line {
+  stroke: #dadadd;
+  fill: none;
+}
+
+.tick-label {
+  dominant-baseline: top;
+  fill: #34495e;
+  /* fill: #8395a7; */
+  font-size: 0.3em;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+}
+
+.tick-label-score {
+  font-size: 0.7em;
+  fill: #8395a7;
+  opacity: 0.8;
+  dominant-baseline: middle;
+}
+
+.annotation-line {
+  stroke: #34495e;
+  opacity: 0.4;
+}
+
+.annotation-text {
+  fill: #34495e;
+  font-size: 0.7em;
+  opacity: 1;
+  dominant-baseline: middle;
+}
+
+.listener-circle {
+  fill: transparent;
+  /* don't fill with none, because you cant see mouse event */
+}
+
+.tooltip-metric {
+  /* display: flex; */
+  justify-content: space-between;
+  width: 100%;
+  text-align: right;
+  /* font-size: 0.9em; */
+}
+
+.content {
+  display: flex;
+  justify-content: left;
+  padding-bottom: 2rem;
+}
+
+.container {
+  /* padding: 1rem; */
+  position: relative;
+  /* width: 5em; */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #f8f9fa;
+  opacity: 0.7;
+}
+
+img:hover {
+  opacity: 1;
+}
+li:hover .text {
+  opacity: 1;
+}
+.container:hover .overlay {
+  opacity: 0;
+}
+
+.footnote {
+  text-align: right;
+  padding-right: 1em;
+  width: 100%;
+}
+
+.tagline {
+  width: 100%;
+  text-align: left;
+}
+
+/* #chart {
+  background: red;
+} */
+
+/* .link:hover {
+  stroke: #8395a7;
+  stroke-opacity: 1;
+  /* stroke-width: 0.4%; */
+/* }  */
+
+ul {
+  list-style-type: none;
+}
+
+.title {
+  fill: url(#gr-simple);
+  font-family: "Archivo Black";
+  /* font-size: 2.2em;
+  color: red;
+  background: -webkit-linear-gradient(left, #5f9ea0, #6495ed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+}
+
+.tooltip {
+  /* opacity: 0; */
+  position: absolute;
+  padding: 1em 1em;
+  /* top: 23%;
+
+  width: 35em;
+
+  color: #3f474e;
+  /* background: #fff; */
+  text-align: left;
+  line-height: 1.4em;
+  /* font-size: 0.9em; */
+  background: #f4f5f5;
+  border: 1px solid #ddd;
+  z-index: 10;
+  pointer-events: none;
+}
+#tooltip-target {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  vertical-align: middle;
+  /* height: 7.5rem; */
+  width: 35em;
+  vertical-align: bottom;
+  /* background: red; */
+  padding-top: 0;
+}
+
+#tooltip-goal {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  /* padding-left: 2rem; */
+  /* height: 7.5rem; */
+  line-height: 1.7em;
+  /* width: 35em; */
+  margin: auto;
+  vertical-align: center;
+  /* width: 35em */
+  /* background: green; */
+}
+
+#tooltip-transformation {
+  padding-top: 3.5rem;
+  /* padding-left: 2rem; */
+  width: 35em;
+  height: 6.5rem;
+  line-height: 1.7em;
+  width: 35em;
+  vertical-align: bottom;
+  text-align: left;
+
+  /* width: 35em */
+  /* background: green; */
+}
+.first-layer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: left;
+  width: 30rem;
+  color: #34495e;
+}
+
+.first-layer img {
+  width: 140px;
+  height: 140px;
+}
+#first-layer {
+  /* float: right; */
+  /* padding-top: 5%; */
+  /* padding-left: 25%; */
+  /* background: green; */
+}
+.first-layer p {
+  /* padding-top: 5%; */
+  /* padding-left: 20%; */
+}
+
+textPath {
+  start-offset: 50%;
+}
+
+.tagline {
+  font-weight: 700;
+}
+
+img {
+  width: 120px;
+  height: 120px;
+}
+
+h1 {
+  /* padding-top: 1rem; */
+  font-family: Marcellus;
+  line-height: 1.4em;
+}
+
+/* .link {
+  transition-property: opacity;
+  transition-duration: 1s;
+  transition-delay: 1s;
+} */
+
+.grey {
+  stroke: rgb(166, 166, 166);
+}
+
+.stroke {
+  stroke-width: 1px;
+}
+
+.top-fill {
+  fill: rgb(166, 166, 166);
+  stroke-width: 0px;
+}
+
+.mute {
+  opacity: 0;
+}
+
+#outro {
+  /* background: red; */
+  /* color: #808080; */
+  /* color: white; */
+  /* margin-top: -1rem; */
+  /* height: 8rem; */
+  text-align: center;
+  vertical-align: bottom;
+  /* background-color: black; */
+}
+
+p#outro-assignment {
+  /* height: 2rem; */
+  font-size: 0.9rem;
+  /* background-color: black; */
+  margin: 1rem 0;
+  vertical-align: center;
+}
+
+.icon {
+  width: 14px;
+  margin: auto;
+  vertical-align: middle;
+  display: inline-block;
+  transform: translate(10%, -15%);
+}
+
+.icon:hover {
+  background: transparent;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 5px 5px;
+}
