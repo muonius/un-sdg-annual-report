@@ -374,7 +374,8 @@ const containerPack = d3
 containerPack
   .append("h1")
   .attr("class", "title")
-  .text("SID Categories");
+  .text("SID Categories")
+  .style("font-size", "5rem")
 
 containerPack
   .append("p")
@@ -442,7 +443,7 @@ const groupPack = svgPack
         d3.select(this)
           .select("text")
           .transition()
-          .style("font-size", "0.7rem");
+          .style("font-size", "0.5rem");
     });
 
 // for each group, add a circle
@@ -452,14 +453,14 @@ groupPack
     // use the color scale in relation to the depth of each value
     .attr("fill", (d) => colorScale(d.depth))
     .attr("stroke", "#00000011")
-    .attr("stroke-width", "2px");
+    .attr("stroke-width", "1px");
 
 // for each group, add a text element
 groupPack
     .append("text")
     .attr("fill", "#333")
     .style("text-shadow", "0 1px 1px #ffffffaa, 0 -1px 1px #ffffffaa")
-    .style("font-size", "0.7rem")
+    .style("font-size", "0.5rem")
     .style("font-weight", "bold")
     // if the data point has children, push the text elements to the top right of the circle element (otherwise leave the text centered)
     .attr("transform", (d) => {
