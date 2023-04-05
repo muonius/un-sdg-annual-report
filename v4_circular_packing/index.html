@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<style>
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font: 8px sans-serif;
+  /* min-height: 100vh;
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+  color: #001648;
+  background: linear-gradient(#002067, #00267b, #002067); */
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem 0;
+}
+.container .visualization {
+  /* background: #fafafa;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,22,72,0.2);
+  /* max-width: 600px; */
+  width: 80vw;
+  margin: 1.5rem;
+  text-align: center
+}
+.container .visualization svg {
+  width: 90%;
+}
+
+</style>
+<body>
+  <div class="container"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+  <script>
+/** script logic
+ * include data
+ * format data through the pack function
+ * include the data respective viz
+ *
+ * format the data through the partition function
+ * include the data respective viz
+ */
+
+// DATA
+const data = {
+    "name": "SID categories",
+    "children": [
+      {
+        "name": "Sustainable, inclusive economic growth",
+        "children": [
+          {
+            "name": "Anguilla, British Virgin Islands, Grenada, St. Kitts and Nevis",
+            "category": "1",
+            "value": "1"
+          },
+          {
+            "name": "Belize",
+            "category": "1",
+            "value": "1"
+          },
+          {
+            "name": "Cook Islands",
+            "category": "1",
+            "value": "1"
+          },
+          {
+            "name": "Dominican Republic",
+            "category": "1",
+            "value": "1"
+          },
+          {
+            "name": "Guinea-Bissau",
+            "category": "1",
+            "value": "1"
+          },
+          {
+            "name": "Haiti",
+            "category": "1",
+            "value": "1"
+          },
+          {
+            "name": "Federated States of Micronesia, Republic of Marshall Islands, Palau, Nauru, and Kiribati",
+            "category": "1",
+            "value": "1"
+          },
+          {
+            "name": "Niue",
+            "category": "1",
+            "value": "1"
+          },
+          {
+            "name": "Suriname",
+            "category": "1",
+            "value": "1"
+          },
+          {
+            "name": "Tokelau",
+            "category": "1",
+            "value": "1"
+          },
+          {
+            "name": "Cabo Verde",
+            "category": "1",
+            "value": "1"
+          },
+          {
+            "name": "Fiji, Solomon Islands, Tonga, Tuvalu and Vanuatu",
+            "category": "1",
+            "value": "1"
+          },
+          {
+            "name": "Sao Tome and Principe",
+            "category": "1",
+            "value": "1"
+          }
+        ]
+      },
+      {
+        "name": "Climate change / Disaster Risk Reducation",
+        "children": [
+          {
+            "name": "Commonwealth of Dominica and St. Vincent and the Grenadines",
+            "category": "2",
+            "value": "1"
+          },
+          {
+            "name": "Comoros",
+            "category": "2",
+            "value": "1"
+          },
+          {
+            "name": "Guinea-Bissau",
+            "category": "2",
+            "value": "1"
+          },
+          {
+            "name": "Jamaica",
+            "category": "2",
+            "value": "1"
+          },
+          {
+            "name": "Maldives",
+            "category": "2",
+            "value": "1"
+          },
+          {
+            "name": "Timor-Leste",
+            "category": "2",
+            "value": "1"
+          },
+          {
+            "name": "Mauritius, Seychelles",
+            "category": "2",
+            "value": "1"
+          },
+        ]
+      },
+      {
+        "name": "Biodiversity & Environmental health",
+        "children": [
+          {
+            "name": "Samoa",
+            "category": "3",
+            "value": "1"
+          },
+          {
+            "name": "Cuba",
+            "category": "3",
+            "value": "1"
+          },
+          {
+            "name": "Mauritius, Seychelles",
+            "category": "3",
+            "value": "1"
+          },
+          {
+            "name": "Papua New Guinea",
+            "category": "3",
+            "value": "1"
+          }
+        ]
+      },
+      {
+        "name": "Human health & social development",
+        "children": [
+          {
+            "name": "Commonwealth of Dominica and St. Vincent and the Grenadines",
+            "category": "4",
+            "value": "1"
+          },
+          {
+            "name": "Cook Islands",
+            "category": "4",
+            "value": "1"
+          },
+          {
+            "name": "Guinea-Bissau",
+            "category": "4",
+            "value": "1"
+          },
+          {
+            "name": "Dominican Republic",
+            "category": "4",
+            "value": "1"
+          },
+          {
+            "name": "Haiti",
+            "category": "4",
+            "value": "1"
+          },
+          {
+            "name": "Jamaica",
+            "category": "4",
+            "value": "1"
+          },
+          {
+            "name": "Maldives",
+            "category": "4",
+            "value": "1"
+          },
+          {
+            "name": "Timor-Leste",
+            "category": "4",
+            "value": "1"
+          },
+          {
+            "name": "Federated States of Micronesia, Republic of Marshall Islands, Palau, Nauru, and Kiribati",
+            "category": "4",
+            "value": "1"
+          },
+          {
+            "name": "Suriname",
+            "category": "4",
+            "value": "1"
+          },
+          {
+            "name": "Niue",
+            "category": "4",
+            "value": "1"
+          },
+          {
+            "name": "Tokelau",
+            "category": "4",
+            "value": "1"
+          },
+          {
+            "name": "Bahamas, Bermuda",
+            "category": "4",
+            "value": "1"
+          },
+          {
+            "name": "Fiji, Solomon Islands, Tonga, Tuvalu and Vanuatu",
+            "category": "4",
+            "value": "1"
+          },
+          {
+            "name": "Sao Tome and Principe",
+            "category": "4",
+            "value": "1"
+          }
+        ]
+      },
+      {
+        "name": "Partnerships & Means of Implementation",
+        "children": [
+          {
+            "name": "Barbados and Montserrat",
+            "category": "5",
+            "value": "1"
+          },
+          {
+            "name": "Cook Islands",
+            "category": "5",
+            "value": "1"
+          },
+          {
+            "name": "Comoros",
+            "category": "5",
+            "value": "1"
+          },
+          {
+            "name": "Federated States of Micronesia, Republic of Marshall Islands, Palau, Nauru, and Kiribati",
+            "category": "5",
+            "value": "1"
+          },
+          {
+            "name": "Samoa",
+            "category": "5",
+            "value": "1"
+          },
+          {
+            "name": "Trinidad and Tobago",
+            "category": "5",
+            "value": "1"
+          },
+          {
+            "name": "Cuba",
+            "category": "5",
+            "value": "1"
+          },
+          {
+            "name": "Cabo Verde",
+            "category": "5",
+            "value": "1"
+          },
+          {
+            "name": "Fiji, Solomon Islands, Tonga, Tuvalu and Vanuatu",
+            "category": "5",
+            "value": "1"
+          },
+          {
+            "name": "Papua New Guinea",
+            "category": "5",
+            "value": "1"
+          }
+        ]
+      }
+    ]
+  };
+
+
+// PACK LAYOUT
+// include a root node based on the hierarchical data
+const hierarchyPack = d3
+  .hierarchy(data);
+
+// compute the relative importance of each node according to the value of the nested elements
+hierarchyPack
+  .sum((d) => d.value);
+
+// define an instance of the pack function
+const pack = d3
+  .pack();
+
+// format the data to draw rectangle elements accordingly, through the layout function
+// ! this modifies the hierarchy, adding the properties through the layout function
+const packData = pack(hierarchyPack);
+
+/** the formatted data has now several properties, for each node; the most pertinent properties for the project at hand are
+ * r, for the radius of the circle (going from 0 to 1 for the outermost node)
+ * x and y, for the coordinate of hopefully the center of the circle
+ * it is possible to therefore leverage these properties, for each subsection, to draw nested circle elements
+ *
+ */
+// test the formatted data
+// console.log(packData);
+
+
+
+/** VIZ
+ * select container
+ * introduce introductory elements
+ * introduce svg & g frame elements
+ * introduce one circle element for each children
+ _no tooltip this time around, as this project simply sets out to test the layout function of d3.pack()_
+*/
+
+// HTML ELEMENTS
+const containerPack = d3
+  .select(".container")
+  .append("div")
+  .attr("class", "visualization");
+
+containerPack
+  .append("h1")
+  .attr("class", "title")
+  .text("SID Categories");
+
+containerPack
+  .append("p")
+  .attr("class", "description")
+  .style("margin", "0.5rem 0 1rem")
+  .style("text-transform", "uppercase")
+  .style("letter-spacing", "0.1rem")
+  // .text("Enclosure diagrams");
+
+// color scale
+const colorScale = d3
+  .scaleOrdinal(["#b3e2cd","#fdcdac","#cbd5e8","#f4cae4","#e6f5c9","#fff2ae","#f1e2cc","#cccccc"]);
+
+// SVG G FRAME
+const margin = {
+    top: 20,
+    right: 20,
+    bottom: 20,
+    left: 20
+};
+
+const width = 500 - (margin.left + margin.right);
+const height = 500 - (margin.top + margin.bottom);
+
+
+const svgPack = containerPack
+    .append("svg")
+    .attr("viewBox", `0 0 ${width +(margin.left + margin.right)} ${height +(margin.top + margin.bottom)}`)
+    .append("g")
+    .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+
+// append one group element for each node (to later add one circle and one text element per group)
+// to retrieve all of them, use the descendants() function
+// ! the depth property describes the level of each node (starting from 0 for the outermost element, incrementing the value for each nested structure)
+// console.log(packData.descendants());
+const groupPack = svgPack
+    .selectAll("g")
+    .data(packData.descendants())
+    .enter()
+    .append("g")
+    /* center the group element according to the x and y coordinate of each circle
+    this means the circle elements are already positioned, and require exclusively the radius attribute
+    this also and already centers the text elements */
+    .attr("transform", (d) => `translate(${(d.x) * width}, ${(d.y) * height})`)
+    // on hover rescale the circle and text element of the group
+    .on("mouseenter", function(d, i) {
+        d3.select(this)
+          .select("circle")
+          .transition()
+          .style("transform", "scale(1.05)");
+
+        d3.select(this)
+          .select("text")
+          .transition()
+          .style("font-size", "1rem");
+    })
+    // when leaving the group, rescale the elements to their default size
+    .on("mouseout", function() {
+        d3.select(this)
+          .select("circle")
+          .transition()
+          .style("transform", "scale(1)");
+
+        d3.select(this)
+          .select("text")
+          .transition()
+          .style("font-size", "0.7rem");
+    });
+
+// for each group, add a circle
+groupPack
+    .append("circle")
+    .attr("r", (d) => (d.r) * width)
+    // use the color scale in relation to the depth of each value
+    .attr("fill", (d) => colorScale(d.depth))
+    .attr("stroke", "#00000011")
+    .attr("stroke-width", "2px");
+
+// for each group, add a text element
+groupPack
+    .append("text")
+    .attr("fill", "#333")
+    .style("text-shadow", "0 1px 1px #ffffffaa, 0 -1px 1px #ffffffaa")
+    .style("font-size", "0.7rem")
+    .style("font-weight", "bold")
+    // if the data point has children, push the text elements to the top right of the circle element (otherwise leave the text centered)
+    .attr("transform", (d) => {
+        if(d.children) {
+            return `rotate(-45) translate(${(d.r) * width}, 0) rotate(45)`;
+        }
+    })
+    .attr("text-anchor", "middle")
+    .attr("alignment-baseline", "middle")
+    .style("pointer-events", "none")
+    .text((d) => d.data.name)
+    .style("font-size", "0.4rem");
+
+  </script>
+</body>
